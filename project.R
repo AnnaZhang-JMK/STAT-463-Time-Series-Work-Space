@@ -39,7 +39,7 @@ send_prediction(group = group, prediction = prediction, to = to, from = from,
 #how to fit a polynomial regression and get residuals?
 
 #mobile apps
-mobile = article_pageviews(platform = "mobile-app", start = "2018090100", end = "2018102100")
+mobile = article_pageviews(platform = "mobile-app", start = "2018090100", end = "2020102100")
 Xt.mobile = gts(mobile$views)
 #linear regression
 # mobile.time = gts_time(gts(mobile$views))
@@ -47,6 +47,7 @@ Xt.mobile = gts(mobile$views)
 # check(lm.mobile)
 mod.mobile = estimate(AR(1), Xt.mobile, demean = FALSE)
 mobile.pred = predict(mod.mobile)
+mobile.pred$pred
 mobile_pred = mean(mobile.pred$pred) #point estimate
 mobile_ci = as.matrix(cbind(mean(mobile.pred$CI0.95[,1]), mean(mobile.pred$CI0.95[,2])))
 mob_forecasts = list(mobile_pred = mobile_pred, mobile_ci = mobile_ci)
