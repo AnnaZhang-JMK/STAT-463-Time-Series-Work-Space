@@ -1,5 +1,2 @@
 {"installed":{"client_id":"145967300339-2es7drgr6nd4i5gunv61mtag170e5p9v.apps.googleusercontent.com","project_id":"pivotal-mode-221619","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://www.googleapis.com/oauth2/v3/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"GJHWk1RowapqILZglg3LJhKk","redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]}}
 
-install.packages("gmailr")
-library('gmailr')
-use_secret_file('stat463.json')
