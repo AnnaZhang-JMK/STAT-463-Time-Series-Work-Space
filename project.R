@@ -2,7 +2,7 @@ install.packages("gmailr")
 library('gmailr')
 use_secret_file('stat463.json')
 
-# HI
+# HELLO
 
 sender = "psu.forecasting.group.3@gmail.com"
 receiver = "psu.forecasting.group.3@gmail.com"
