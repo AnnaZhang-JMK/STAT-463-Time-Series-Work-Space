@@ -11,15 +11,6 @@ library(simts)
 library(sarima)
 
 use_secret_file('stat463.json')
-# 
-# sender = "psu.forecasting.group.3@gmail.com"
-# receiver = "psu.forecasting.instructors@gmail.com"
-# 
-# send_message(mime(
-#   To = receiver,
-#   From = sender,
-#   Subject = "11-05-2018-Prediction",
-#   body = prediction))
 
 suppressPackageStartupMessages(library(gmailr))
 
