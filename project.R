@@ -1,4 +1,3 @@
-#
 #devtools::install_github("SMAC-Group/simts")
 # install.packages("gmailr")
 # install.packages('openssl')
@@ -47,81 +46,67 @@ Xt.mobile = gts(mobile$views)
 # check(lm.mobile)
 mod.mobile = estimate(AR(1), Xt.mobile, demean = FALSE)
 mobile.pred = predict(mod.mobile)
-mobile.pred$pred
-mobile_pred = mean(mobile.pred$pred) #point estimate
-mobile_ci = as.matrix(cbind(mean(mobile.pred$CI0.95[,1]), mean(mobile.pred$CI0.95[,2])))
+mobile_pred = mobile.pred$pred[1]
+mobile_ci = as.matrix(cbind(mobile.pred$CI0.95[1, ]))
 mob_forecasts = list(mobile_pred = mobile_pred, mobile_ci = mobile_ci)
 mob_forecasts
 
 #desktops
-desktop = article_pageviews(platform = "desktop", start = "2018090100", end = "2018102100")
+desktop = article_pageviews(platform = "desktop", start = "2018090100", end = "2020102100")
 Xt.desktop = gts(desktop$views)
 mod.desktop = estimate(AR(1), Xt.desktop, demean = FALSE)
 desktop.pred = predict(mod.desktop)
-desktop_pred = mean(desktop.pred$pred)
-desktop_ci = as.matrix(cbind(mean(desktop.pred$CI0.95[,1]), mean(desktop.pred$CI0.95[,1])))
-desk_forecasts = list(desktop_pred = desktop_pred, desktop_ci = desktop_ci)
+desktop_ci = as.matrix(cbind(desktop.pred$CI0.95[1, ]))
+desk_forecasts = list(desktop_pred = desktop.pred$pred[1], desktop_ci = desktop_ci)
 desk_forecasts
 
 #Silvio Berlusconi
-sb_pageviews <- article_pageviews(article = "Silvio_Berlusconi", start = "2018090100", end = "2018102100")
+sb_pageviews <- article_pageviews(article = "Silvio_Berlusconi", start = "2018090100", end = "2020102100")
 Xt.sb = gts(sb_pageviews$views)
 mod.AR1 = estimate(AR(1), Xt.sb, demean = FALSE)
-#check(mod.AR1)
 pred.sb = predict(mod.AR1)
-pred_sb = mean(pred.sb$pred)
-silvio_ci = as.matrix(cbind(mean(pred.sb$CI0.95[,1]), mean(pred.sb$CI0.95[,2])))
+pred_sb = pred.sb$pred[1]
+silvio_ci = as.matrix(cbind(pred.sb$CI0.95[1, ]))
 silvio_forecasts = list(silvio_pred = pred_sb, silvio_ci = silvio_ci)
 silvio_forecasts
 
 #Beyonce
-bey_pageviews <- article_pageviews(article = "Beyonce", start = "2018090100", end = "2018102100")
+bey_pageviews <- article_pageviews(article = "Beyonce", start = "2018090100", end = "2020102100")
 bey.Xt = gts(bey_pageviews$views)
 mod.AR1 = estimate(AR(1), bey.Xt, demean = FALSE)
 pred.bey = predict(mod.AR1)
-pred_bey = mean(pred.bey$pred)
-bey_ci = as.matrix(cbind(mean(pred.bey$CI0.95[,1]), mean(pred.bey$CI0.95[,2])))
+pred_bey = pred.bey$pred[1]
+bey_ci = as.matrix(cbind(pred.bey$CI0.95[1, ]))
 bey_forecasts = list(bey_pred = pred_bey, bey_ci = bey_ci)
 bey_forecasts
 
 #Noam Chomsky
-nc_pageviews <- article_pageviews(article = "Noam_Chomsky", start = "2018090100", end = "2018102100")
+nc_pageviews <- article_pageviews(article = "Noam_Chomsky", start = "2018090100", end = "2020102100")
 Xt.nc = gts(nc_pageviews$views)
 mod.AR1 = estimate(AR(1), Xt.nc, demean = FALSE)
 pred.nc = predict(mod.AR1)
 pred_nc = mean(pred.nc$pred)
-nc_ci = as.matrix(cbind(mean(pred.nc$CI0.95[,1]), mean(pred.nc$CI0.95[,2])))
+nc_ci = as.matrix(cbind(pred.nc$CI0.95[1, ]))
 chom_forecasts = list(nc_pred = pred_nc, nc_ci = nc_ci)
 chom_forecasts
 
 #SS_Lazio
-lazio_pageviews <- article_pageviews(article = "SS_Lazio", start = "2018090100", end = "2018102100")
+lazio_pageviews <- article_pageviews(article = "SS_Lazio", start = "2018090100", end = "2020102100")
 Xt.lazio = gts(lazio_pageviews$views)
 mod.AR1 = estimate(AR(1), Xt.lazio, demean = FALSE)
 pred.lazio = predict(mod.AR1)
-pred_lazio = mean(pred.lazio$pred)
-lazio_ci = as.matrix(cbind(mean(pred.lazio$CI0.95[,1]), mean(pred.lazio$CI0.95[,2])))
+pred_lazio = pred.lazio$pred[1]
+lazio_ci = as.matrix(cbind(pred.lazio$CI0.95[1, ]))
 lazio_forecasts = list(lazio_pred = pred_lazio, lazio_ci = lazio_ci)
 lazio_forecasts
-
-#SS_Lazio
-lazio_pageviews <- article_pageviews(article = "SS_Lazio", start = "2018090100", end = "2018102100")
-Xt.lazio = gts(lazio_pageviews$views)
-mod.AR1 = estimate(AR(1), Xt.lazio, demean = FALSE)
-pred.lazio = predict(mod.AR1)
-pred_lazio = mean(pred.lazio$pred)
-lazio_ci = as.matrix(cbind(mean(pred.lazio$CI0.95[,1]), mean(pred.lazio$CI0.95[,2])))
-lazio_forecasts = list(lazio_pred = pred_lazio, lazio_ci = lazio_ci)
-lazio_forecasts
-
 
 #Thanks
-thanks_pageviews <- article_pageviews(article = "Thanksgiving", start = "2018090100", end = "2018102100")
+thanks_pageviews <- article_pageviews(article = "Thanksgiving", start = "2018090100", end = "2020102100")
 Xt.thanks = gts(thanks_pageviews$views)
 mod.AR1 = estimate(AR(1), Xt.thanks, demean = FALSE)
 pred.thanks = predict(mod.AR1)
-pred_thanks = mean(pred.thanks$pred)
-thanks_ci = as.matrix(cbind(mean(pred.thanks$CI0.95[,1]), mean(pred.thanks$CI0.95[,2])))
+pred_thanks = pred.thanks$pred[1]
+thanks_ci = as.matrix(cbind(pred.thanks$CI0.95[1,]))
 thanks_forecasts = list(thanks_pred = pred_thanks, thanks_ci = thanks_ci)
 thanks_forecasts
 
