@@ -1,4 +1,5 @@
 #devtools::install_github("SMAC-Group/simts")
+devtools::install_github("SMAC-Group/forecast463")
 # install.packages("gmailr")
 # install.packages('openssl')
 # install.packages('sarima')
@@ -27,15 +28,12 @@ from = "psu.forecasting.group.3@gmail.com"
 key_group = "dJuWKAEQdf6102W"
 date = Sys.Date()
 
-send_prediction(group = group, prediction = prediction, to = to, from = from, 
-                key = key_group, date = date)
-
-### model fitting
-# Xt = gts(wiki_ts$views)
-# plot(Xt)
-#fit.lm <- lm(Xt~gts_time(gts(wiki_ts$views)))
-
-#how to fit a polynomial regression and get residuals?
+send_prediction(group = group, 
+                prediction = prediction, 
+                to = to, 
+                from = from, 
+                key = key_group, 
+                date = date)
 
 #mobile apps
 mobile = article_pageviews(platform = "mobile-app", start = "2018090100", end = "2020102100")
@@ -112,10 +110,17 @@ thanks_forecasts
 
 
 # intergrate predictions
-prediction = list(mobile = mob_forecasts, desktop = desk_forecasts,
-                  silvio = silvio_forecasts, beyonce = bey_forecasts,
-                  chomsky = chom_forecasts, lazio = lazio_forecasts,
+prediction = list(mobile = mob_forecasts, 
+                  desktop = desk_forecasts,
+                  silvio = silvio_forecasts, 
+                  beyonce = bey_forecasts,
+                  chomsky = chom_forecasts, 
+                  lazio = lazio_forecasts,
                   thanks = thanks_forecasts)
+prediction_OK = check_prediction(prediction = prediction)
+
+credential_OK = check_credentials(group = group, from = from, key = key)
+credential_OK
 
 # mod.AR2 = estimate(AR(2), Xt, demean = FALSE, method = 'yule-walker')
 # check(mod.AR2)
