@@ -39,10 +39,10 @@ send_prediction(group = group,
 mobile = article_pageviews(platform = "mobile-app", start = "2018090100", end = "2020102100")
 Xt.mobile = gts(mobile$views)
 plot(Xt.mobile)
-select(AR(10), Xt.mobile) #model selection
+#select(AR(10), Xt.mobile) #model selection
 #mod.mobile = estimate(AR(1), Xt.mobile, demean = FALSE)
 mod.mobile = estimate(AR(7), Xt.mobile, demean = FALSE)
-check(mod.mobile.alt)
+check(mod.mobile)
 mobile.pred = predict(mod.mobile)
 mobile_pred = mobile.pred$pred[1]
 mobile_ci = as.matrix(cbind(mobile.pred$CI0.95[1, ]))
@@ -53,7 +53,7 @@ mob_forecasts
 desktop = article_pageviews(platform = "desktop", start = "2018090100", end = "2020102100")
 Xt.desktop = gts(desktop$views)
 corr_analysis(Xt.desktop)
-select(AR(10), Xt.desktop)
+#select(AR(10), Xt.desktop)
 #mod.desktop = estimate(AR(1), Xt.desktop, demean = FALSE)
 mod.desktop = estimate(AR(8), Xt.desktop, demean = FALSE)
 check(mod.desktop)
@@ -66,7 +66,7 @@ desk_forecasts
 sb_pageviews <- article_pageviews(article = "Silvio_Berlusconi", start = "2018090100", end = "2020102100")
 Xt.sb = gts(sb_pageviews$views)
 plot(Xt.sb)
-select(AR(15), Xt.sb)
+#select(AR(15), Xt.sb)
 mod.AR1 = estimate(AR(2), Xt.sb, demean = FALSE)
 pred.sb = predict(mod.AR1)
 pred_sb = pred.sb$pred[1]
@@ -78,7 +78,7 @@ silvio_forecasts
 bey_pageviews <- article_pageviews(article = "Beyonce", start = "2018090100", end = "2020102100")
 bey.Xt = gts(bey_pageviews$views)
 plot(bey.Xt)
-select(AR(10), bey.Xt)
+#select(AR(10), bey.Xt)
 mod.AR1 = estimate(AR(1), bey.Xt, demean = FALSE)
 pred.bey = predict(mod.AR1)
 pred_bey = pred.bey$pred[1]
@@ -91,8 +91,8 @@ bey_forecasts
 nc_pageviews <- article_pageviews(article = "Noam_Chomsky", start = "2018090100", end = "2020102100")
 Xt.nc = gts(nc_pageviews$views)
 plot(Xt.nc)
-select(MA(10), Xt.nc)
-select(AR(10), Xt.nc)
+# select(MA(10), Xt.nc)
+# select(AR(10), Xt.nc)
 mod.nc = estimate(MA(3), Xt.nc)
 #mod.AR1 = estimate(AR(1), Xt.nc, demean = FALSE)
 pred.nc = predict(mod.nc)
@@ -105,13 +105,14 @@ chom_forecasts
 lazio_pageviews <- article_pageviews(article = "SS_Lazio", start = "2018090100", end = "2020102100")
 Xt.lazio = gts(lazio_pageviews$views)
 plot(Xt.lazio)
-corr_analysis(Xt.lazio)
-select(AR(10), Xt.lazio)
-select(AR(11), Xt.lazio)
+# corr_analysis(Xt.lazio)
+# select(AR(10), Xt.lazio)
+# select(MA(10), Xt.lazio)
 mod.lazio = estimate(AR(1), Xt.lazio, demean = FALSE)
 pred.lazio = predict(mod.lazio)
 pred_lazio = pred.lazio$pred[1]
 lazio_ci = as.matrix(cbind(pred.lazio$CI0.95[1, ]))
+lazio_ci[1,1]=0
 lazio_forecasts = list(lazio_pred = pred_lazio, lazio_ci = lazio_ci)
 lazio_forecasts
 
@@ -134,10 +135,6 @@ prediction = list(mobile = mob_forecasts,
                   chomsky = chom_forecasts, 
                   lazio = lazio_forecasts,
                   thanks = thanks_forecasts)
-prediction_OK = check_prediction(prediction = prediction)
-
-credential_OK = check_credentials(group = group, from = from, key = key)
-credential_OK
 
 # mod.AR2 = estimate(AR(2), Xt, demean = FALSE, method = 'yule-walker')
 # check(mod.AR2)
